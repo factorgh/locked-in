@@ -18,7 +18,7 @@ const SplashScreen = () => {
 
   return (
     <ScreenWrapper>
-      <View className="flex-1 items-center justify-center">
+      <View className="flex-1 items-center justify-center mt-3">
         <LottieView
           source={require("../assets/splash.json")} // Replace with your Lottie file
           autoPlay
