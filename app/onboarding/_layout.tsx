@@ -3,7 +3,16 @@ import React from "react";
 import { Stack } from "expo-router";
 
 const OonboardLayout = () => {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="client"
+        options={{
+          presentation: "modal",
+        }}
+      />
+    </Stack>
+  );
 };
 
 export default OonboardLayout;
