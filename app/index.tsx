@@ -11,7 +11,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       // Change to your target screen
-      router.push("/(onboarding)/onboard_one");
+      router.push("/onboarding/onboard_one");
     }, 10000);
     return () => clearTimeout(timeout);
   }, [router]);

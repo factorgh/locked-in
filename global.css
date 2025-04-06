@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Name	Hex Code	Description
+Original	#1B1B1B	Very dark gray
+10% lighter	#2E2E2E	Slightly lighter dark gray
+20% lighter	#424242	Dark charcoal gray
+30% lighter	#565656	Charcoal gray
+40% lighter	#6A6A6A	Medium gray
+50% lighter	#7E7E7E	Mid gray
+60% lighter	#929292	Lighter medium gray
+70% lighter	#A6A6A6	Soft light gray
+80% lighter	#BABABA	Very light gray
+90% lighter	#CECECE */
