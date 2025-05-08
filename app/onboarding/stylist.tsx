@@ -3,9 +3,11 @@ import React from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import OnBoardingCards from "@/components/OnBoardingCards";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "expo-router";
 
 const Stylist = () => {
   const [activeTab, setActiveTab] = React.useState(0);
+  const router = useRouter();
   const handleActiveTab = (index: number) => {
     setActiveTab(index);
   };
@@ -19,7 +21,7 @@ const Stylist = () => {
   ];
 
   const handleNext = () => {
-    // navigate to next screen
+    router.push("/onboarding/prices");
   };
 
   return (

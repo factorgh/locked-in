@@ -11,6 +11,10 @@ const OonboardLayout = () => {
           presentation: "modal",
         }}
       />
+      <Stack.Screen name="availability" options={{ headerShown: false }} />
+      <Stack.Screen name="prices" options={{ headerShown: false }} />
+      <Stack.Screen name="selection" options={{ headerShown: false }} />
+      <Stack.Screen name="client_meeting" options={{ headerShown: false }} />
     </Stack>
   );
 };
