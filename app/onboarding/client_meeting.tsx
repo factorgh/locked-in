@@ -4,13 +4,19 @@ import BackButton from "@/components/BackButton";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import OnBoardingCards from "@/components/OnBoardingCards";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "expo-router";
 
 const client_meeting = () => {
+  const router = useRouter();
   const data: string[] = [
     "I prefer to visit clients at their location",
     "I prefer for clients to visit me",
     "I dont mind any of the above",
   ];
+
+  const handleCompletion = () => {
+    router.push("/(tabs)");
+  };
   return (
     <ScreenWrapper>
       <View className="flex-1 justify-between">
@@ -32,7 +38,7 @@ const client_meeting = () => {
             </View>
           </View>
         </View>
-        <CustomButton title="Save & Continue" />
+        <CustomButton onPress={handleCompletion} title="Save & Continue" />
       </View>
     </ScreenWrapper>
   );

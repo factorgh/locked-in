@@ -9,6 +9,7 @@ const OonboardLayout = () => {
         name="client"
         options={{
           presentation: "modal",
+          animation: "slide_from_bottom",
         }}
       />
       <Stack.Screen name="availability" options={{ headerShown: false }} />
