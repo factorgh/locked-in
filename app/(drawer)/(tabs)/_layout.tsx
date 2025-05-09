@@ -5,10 +5,9 @@ import Feather from "react-native-vector-icons/Feather";
 type TabIconProps = {
   focused: boolean;
   iconName: string;
-  title: string;
 };
 
-function TabIcon({ focused, iconName, title }: TabIconProps) {
+function TabIcon({ focused, iconName }: TabIconProps) {
   return focused ? (
     <View className="flex-row items-center justify-center mt-2">
       <Feather name={iconName} size={20} color="#FFA500" /> {/* Active color */}
@@ -48,7 +47,7 @@ export default function TabsLayout() {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} iconName="home" title="Home" />
+            <TabIcon focused={focused} iconName="home" />
           ),
         }}
       />
@@ -57,11 +56,7 @@ export default function TabsLayout() {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              iconName="message-circle"
-              title="Search"
-            />
+            <TabIcon focused={focused} iconName="send" />
           ),
         }}
       />
@@ -70,7 +65,7 @@ export default function TabsLayout() {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} iconName="book" title="Save" />
+            <TabIcon focused={focused} iconName="book" />
           ),
         }}
       />
@@ -79,7 +74,7 @@ export default function TabsLayout() {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} iconName="user" title="Profile" />
+            <TabIcon focused={focused} iconName="user" />
           ),
         }}
       />
