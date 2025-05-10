@@ -2,10 +2,11 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <ScreenWrapper>
       <ScrollView>
         {/* Profile Header */}
         <View className="items-center px-4 pt-6">
@@ -65,6 +66,6 @@ export default function ProfileScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

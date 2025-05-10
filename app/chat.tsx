@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { Send } from "lucide-react-native"; // optional icon
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 type Message = {
   id: string;
@@ -81,7 +82,7 @@ export default function ChatScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <ScreenWrapper>
       <FlatList
         data={messages}
         renderItem={renderItem}
@@ -104,6 +105,6 @@ export default function ChatScreen() {
           <Send color="white" size={20} />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

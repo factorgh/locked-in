@@ -9,12 +9,12 @@ type TabIconProps = {
 
 function TabIcon({ focused, iconName }: TabIconProps) {
   return focused ? (
-    <View className="flex-row items-center justify-center mt-2">
+    <View className="flex-row items-center justify-center mt-3">
       <Feather name={iconName} size={20} color="#FFA500" /> {/* Active color */}
     </View>
   ) : (
-    <View className="justify-center items-center mt-2">
-      <Feather name={iconName} size={18} color="#A8B5DB" />
+    <View className="justify-center items-center mt-3">
+      <Feather name={iconName} size={18} color="#FFFFFF" />
     </View>
   );
 }
@@ -30,7 +30,7 @@ export default function TabsLayout() {
           alignItems: "center",
         },
         tabBarStyle: {
-          backgroundColor: "#0F0D23",
+          backgroundColor: "#232121",
           borderRadius: 50,
           marginHorizontal: 20,
           marginBottom: 36,

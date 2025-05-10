@@ -6,90 +6,118 @@ import {
   FlatList,
   RefreshControl,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
-const dummyPosts = [
+// ... existing imports
+const bookingPosts = [
   {
-    id: "1",
-    username: "johndoe",
-    profilePic: "https://source.unsplash.com/100x100/?man,face",
+    id: "b1",
+    username: "bookinguser1",
+    profilePic:
+      "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200",
     image:
-      "https://images.pexels.com/photos/27987138/pexels-photo-27987138/free-photo-of-black-women.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    caption: "Loving this view!",
-    likes: 120,
+      "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    caption: "Booked a nice villa!",
+    likes: 92,
   },
   {
-    id: "2",
-    username: "janedoe",
-    profilePic: "https://source.unsplash.com/100x100/?woman,face",
+    id: "b2",
+    username: "bookinguser2",
+    profilePic:
+      "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200",
     image:
-      "https://images.pexels.com/photos/6923247/pexels-photo-6923247.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    caption: "Weekend getaway 😎",
-    likes: 242,
+      "https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    caption: "Weekend trip booked 🔥",
+    likes: 210,
+  },
+];
+
+const discoverPosts = [
+  {
+    id: "d1",
+    username: "discoverguy",
+    profilePic:
+      "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image:
+      "https://images.pexels.com/photos/2745956/pexels-photo-2745956.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    caption: "Just discovered this hidden gem!",
+    likes: 180,
   },
   {
-    id: "3",
-    username: "alex",
-    profilePic: "https://source.unsplash.com/100x100/?person",
+    id: "d2",
+    username: "exploregal",
+    profilePic:
+      "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200",
     image:
-      "https://images.pexels.com/photos/2097629/pexels-photo-2097629.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    caption: "Back to the grind!",
-    likes: 87,
-  },
-  {
-    id: "4",
-    username: "alex",
-    profilePic: "https://source.unsplash.com/100x100/?person",
-    image:
-      "https://images.pexels.com/photos/1181581/pexels-photo-1181581.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    caption: "Back to the grind!",
-    likes: 87,
-  },
-  {
-    id: "5",
-    username: "alex",
-    profilePic: "https://source.unsplash.com/100x100/?person",
-    image:
-      "https://images.pexels.com/photos/1447939/pexels-photo-1447939.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    caption: "Back to the grind!",
-    likes: 87,
+      "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    caption: "Found this amazing cafe in Paris 😍",
+    likes: 300,
   },
 ];
 
 export default function FeedsScreen() {
   const [refreshing, setRefreshing] = useState(false);
-  const [posts, setPosts] = useState(dummyPosts);
-  const [activeTab, setActiveTab] = useState("discover");
+  const [selectedTab, setSelectedTab] = useState("Booking");
+
+  const HeaderTabs = () => (
+    <View className="flex-row bg-[#232121] p-2  rounded-full">
+      {["Booking", "Discover"].map((tab) => (
+        <Pressable
+          key={tab}
+          className={`px-4 py-2 rounded-full ${
+            selectedTab === tab ? "bg-white" : "bg-transparent"
+          }`}
+          onPress={() => setSelectedTab(tab)}
+        >
+          <Text
+            className={`text-sm font-medium ${
+              selectedTab === tab ? "text-black" : "text-white"
+            }`}
+          >
+            {tab}
+          </Text>
+        </Pressable>
+      ))}
+    </View>
+  );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
-      // In real case, fetch new data here
-      setPosts([...dummyPosts]); // reload dummy data
       setRefreshing(false);
     }, 1500);
   }, []);
 
+  const postsToShow = selectedTab === "Booking" ? bookingPosts : discoverPosts;
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <ScreenWrapper>
       <FlatList
-        data={posts}
+        data={postsToShow}
         keyExtractor={(item) => item.id}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View className="flex-1 flex-row justify-center items-center px-10 my-4">
+            <HeaderTabs />
+          </View>
+        }
         renderItem={({ item }) => (
           <View className="mb-6">
             {/* Header */}
-            <View className="flex-row items-center px-4 py-2">
+            <View className="flex-row items-center px-4 py-2 rounded-md ">
               <Image
                 source={{ uri: item.profilePic }}
                 className="w-10 h-10 rounded-full"
+                style={{ borderRadius: 20 }}
               />
-              <Text className="ml-3 font-semibold text-gray-900">
+              <Text className="ml-3 font-semibold text-white">
                 {item.username}
               </Text>
             </View>
@@ -102,25 +130,25 @@ export default function FeedsScreen() {
             />
 
             {/* Actions */}
-            <View className="flex-row px-4 py-2 space-x-4">
-              <Feather name="heart" size={24} />
-              <Feather name="message-circle" size={24} />
-              <Feather name="send" size={24} />
+            <View className="flex-row px-4 py-2 space-x-4 mt-5 gap-5 mb-3">
+              <Feather name="heart" size={24} color="white" />
+              <Feather name="message-circle" size={24} color="white" />
+              <Feather name="send" size={24} color="white" />
             </View>
 
             {/* Likes */}
-            <Text className="px-4 font-semibold text-gray-900">
+            <Text className="px-4 font-semibold text-gray-100">
               {item.likes} likes
             </Text>
 
             {/* Caption */}
-            <Text className="px-4 text-gray-700 mt-1">
+            <Text className="px-4 text-gray-200 mt-1">
               <Text className="font-semibold">{item.username} </Text>
               {item.caption}
             </Text>
           </View>
         )}
       />
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

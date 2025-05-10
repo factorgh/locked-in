@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 const listings = [
   {
@@ -39,7 +40,7 @@ const listings = [
 
 export default function BookingScreen() {
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <ScreenWrapper>
       {/* Header */}
       <View className="px-4 pt-4 pb-2">
         <Text className="text-2xl font-bold text-gray-900">Book Your Stay</Text>
@@ -90,6 +91,6 @@ export default function BookingScreen() {
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }

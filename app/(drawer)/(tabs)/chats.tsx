@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 type ChatUser = {
   id: string;
@@ -45,7 +46,7 @@ export default function ChatListScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <ScreenWrapper>
       <Text className="text-xl font-bold px-4 pt-4 pb-2">Chats</Text>
       <FlatList
         data={users}
@@ -61,16 +62,18 @@ export default function ChatListScreen() {
             />
             <View className="flex-1">
               <View className="flex-row justify-between">
-                <Text className="text-base font-medium">{item.name}</Text>
+                <Text className="text-base font-medium text-white">
+                  {item.name}
+                </Text>
                 <Text className="text-xs text-gray-400">{item.time}</Text>
               </View>
-              <Text className="text-sm text-gray-600" numberOfLines={1}>
+              <Text className="text-sm text-gray-50" numberOfLines={1}>
                 {item.lastMessage}
               </Text>
             </View>
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }
